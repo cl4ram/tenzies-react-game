@@ -6,7 +6,7 @@ body {
   margin: 0;
   background-color: #0B2434;
   padding: 20px;
-  font-family: 'Karla', sans-serif;
+  font-family: "Major Mono Display", monospace;
   font-weight: 700;
   text-align: center;
 }
@@ -31,12 +31,17 @@ main {
 }
 
 .instructions {
-  font-family: 'Inter', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   margin-top: 0;
   text-align: center;
 }
 
+.tracker {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: start;
+}
 
 .die-container {
   display: grid;
@@ -151,7 +156,7 @@ main {
   color: #FFFFFF;
   border: none;
   padding: 15px 50px;
-  font-family: 'Karla', sans-serif;
+  font-family: "Major Mono Display", monospace;
   font-weight: 700;
   font-size: 1.7rem;
   cursor: pointer;

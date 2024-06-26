@@ -1,5 +1,6 @@
 import Die from "./components/Die"
 import RollTracker from "./components/RollTracker"
+import Timer from "./components/Timer"
 import './App.css'
 import { useEffect, useState } from "react"
 import {nanoid} from "nanoid"
@@ -10,6 +11,20 @@ export default function App() {
   const [dice, setDice] = useState(allNewDice())
   const [tenzies, setTenzies] = useState(false)
   const [rolls, setRolls] = useState(0)
+  const [time, setTime] = useState(0)
+  const [running, setRunning] = useState(true)
+
+  useEffect(()=>{
+    let interval = null
+    if (running) {
+      interval = setInterval(()=> {
+        setTime(prevTime => prevTime + 10)
+      }, 10)
+    } else if (!running) {
+      clearInterval(interval)
+    }
+    return () => clearInterval(interval)
+  }, [running])
 
   useEffect(() =>{
     const value = dice[0].value
@@ -17,6 +32,7 @@ export default function App() {
     const allSame = dice.every(die => die.value === value)
     if (allHeld && allSame) {
       setTenzies(true)
+      setRunning(false)
     }
   }, [dice])
 
@@ -48,6 +64,8 @@ export default function App() {
       setDice(allNewDice())
       setTenzies(false)
       setRolls(0)
+      setTime(0)
+      setRunning(true)
     }
   }
 
@@ -69,7 +87,10 @@ export default function App() {
         {tenzies && <Confetti width={window.innerWidth} height={window.innerHeight} />}
         <h1 className="title">Tenzies</h1>
         <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-        <RollTracker rolls={rolls}/>
+        <div className="tracker">
+          <RollTracker rolls={rolls} />
+          <Timer time={time}/>
+        </div>
         <div className="die-container">
           {dices}
         </div>
