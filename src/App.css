@@ -13,7 +13,7 @@ body {
 
 main {
   background-color: #F5F5F5;
-  height: 400px;
+  height: max-content;
   max-width: 800px;
   border-radius: 10px;
   padding: 1rem;
@@ -155,7 +155,7 @@ main {
   font-weight: 700;
   font-size: 1.7rem;
   cursor: pointer;
-
+  margin-top: 30px;
 }
 
 .roll-button:active {

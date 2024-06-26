@@ -18,6 +18,6 @@ This is a project for the 'Learn React' course from Scrimba.
 ## To-do
 
 - ~~Put real dots on the dice~~
-- Track the number of rolls
+- ~~Track the number of rolls~~
 - Track the time to win
 - Save best time and best rolls to localStorage
