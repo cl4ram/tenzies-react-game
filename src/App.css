@@ -50,15 +50,100 @@ main {
   height: 60px;
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.15);
   border-radius: 7px;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #000000;
+  border-radius: 50%;
+}
+
+.die-1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
-.die-value {
-  font-size: 1.7rem;
+.die-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.die-2 .dot:nth-of-type(1) {
+  align-self: flex-start;
+}
+
+.die-2 .dot:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.die-3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.die-3 .dot:nth-of-type(1) {
+  align-self: flex-start;
+}
+
+.die-3 .dot:nth-of-type(3) {
+  align-self: flex-end;
+}
+
+.die-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.die-5 {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+  grid-template-areas:
+    'a . b'
+    '. c .'
+    'd . e';
+}
+
+.die-5 .dot:nth-of-type(1) {
+  grid-area: a;
+}
+
+.die-5 .dot:nth-of-type(2) {
+  grid-area: b;
+}
+
+.die-5 .dot:nth-of-type(3) {
+  grid-area: c;
+}
+
+.die-5 .dot:nth-of-type(4) {
+  grid-area: d;
+}
+
+.die-5 .dot:nth-of-type(5) {
+  grid-area: e;
+}
+
+.die-6 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+}
+
 
 .roll-button {
   background-color: #5035FF;
