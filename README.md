@@ -21,4 +21,4 @@ This is a project for the 'Learn React' course from Scrimba.
 - ~~Track the number of rolls~~
 - ~~Track the time to win~~
 - ~~Save best time and best rolls to localStorage~~
-- Start the game on start button
+- ~~Start the game on start button~~

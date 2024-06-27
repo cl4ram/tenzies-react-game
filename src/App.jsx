@@ -16,6 +16,7 @@ export default function App() {
   const [running, setRunning] = useState(true)
   const [bestRoll, setBestRoll] = useState(parseInt(localStorage.getItem("bestRolls")) || null)
   const [bestTime, setBestTime] = useState(parseInt(localStorage.getItem("bestTime")) || null)
+  const [startGame, setStartGame] = useState(false)
 
   useEffect(()=>{
     let interval = null
@@ -38,6 +39,10 @@ export default function App() {
       checkBestTime()
     }
   }, [dice])
+
+  function start(){
+    setStartGame(true)
+  }
 
   function generateDie() {
     return {
@@ -117,14 +122,22 @@ export default function App() {
         {tenzies && <Confetti width={window.innerWidth} height={window.innerHeight} />}
         <h1 className="title">Tenzies</h1>
         <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-        <div className="tracker">
-          <RollTracker rolls={rolls} />
-          <Timer time={time}/>
+        {
+        !startGame 
+        ? 
+        <button className="start-button" onClick={start}>Start Game</button>
+        :
+        <div className="game-container">
+            <div className="tracker">
+              <RollTracker rolls={rolls} />
+              <Timer time={time}/>
+            </div>
+            <div className="die-container">
+              {dices}
+            </div>
+            <button onClick={rollDice} className="roll-button">{tenzies ? 'Play again' : 'Roll'}</button>
         </div>
-        <div className="die-container">
-          {dices}
-        </div>
-        <button onClick={rollDice} className="roll-button">{tenzies ? 'Play again' : 'Roll'}</button>
+        }
         {(bestRoll && bestTime) && <Records bestRoll={bestRoll} bestTime={bestTime}/> }
       </main>
   )
