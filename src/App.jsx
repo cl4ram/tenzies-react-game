@@ -20,8 +20,6 @@ export default function App() {
       interval = setInterval(()=> {
         setTime(prevTime => prevTime + 10)
       }, 10)
-    } else if (!running) {
-      clearInterval(interval)
     }
     return () => clearInterval(interval)
   }, [running])
