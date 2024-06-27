@@ -169,6 +169,14 @@ main {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
+.scroes-container {
+  margin-top: 20px;
+}
+
+.scroes-container p span {
+  background-color: #59E391;
+}
+
 @media (max-width: 680px) {
   .tracker {
     display: grid;

@@ -20,4 +20,5 @@ This is a project for the 'Learn React' course from Scrimba.
 - ~~Put real dots on the dice~~
 - ~~Track the number of rolls~~
 - ~~Track the time to win~~
-- Save best time and best rolls to localStorage
+- ~~Save best time and best rolls to localStorage~~
+- Start the game on start button

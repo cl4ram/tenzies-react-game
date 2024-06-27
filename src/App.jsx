@@ -1,6 +1,7 @@
 import Die from "./components/Die"
 import RollTracker from "./components/RollTracker"
 import Timer from "./components/Timer"
+import Records from "./components/Records"
 import './App.css'
 import { useEffect, useState } from "react"
 import {nanoid} from "nanoid"
@@ -13,6 +14,8 @@ export default function App() {
   const [rolls, setRolls] = useState(0)
   const [time, setTime] = useState(0)
   const [running, setRunning] = useState(true)
+  const [bestRoll, setBestRoll] = useState(parseInt(localStorage.getItem("bestRolls")) || null)
+  const [bestTime, setBestTime] = useState(parseInt(localStorage.getItem("bestTime")) || null)
 
   useEffect(()=>{
     let interval = null
@@ -31,6 +34,8 @@ export default function App() {
     if (allHeld && allSame) {
       setTenzies(true)
       setRunning(false)
+      checkBestRolls()
+      checkBestTime()
     }
   }, [dice])
 
@@ -79,6 +84,33 @@ export default function App() {
   }
 
   const dices = dice.map(die => <Die value={die.value} key={die.id} isHeld={die.isHeld} hold={()=> hold(die.id)}/>)
+  const storedRolls = parseInt(localStorage.getItem("bestRolls"))
+  const storedTime =  parseInt(localStorage.getItem("bestTime"))
+
+  function checkBestRolls(){
+    if (rolls < storedRolls) {
+      localStorage.setItem("bestRolls", rolls)
+      setBestRoll(rolls)
+    } else if (!storedRolls) {
+      localStorage.setItem("bestRolls", rolls)
+      setBestRoll(rolls)
+    } else {
+      return
+    }
+  }
+
+  function checkBestTime(){
+    if (time < storedTime) {
+      localStorage.setItem("bestTime", time)
+      setBestTime(time)
+    } else if (!storedTime) {
+      localStorage.setItem("bestTime", time)
+      setBestTime(time)
+    } else {
+      return
+    }
+
+  }
 
   return (
       <main>
@@ -93,6 +125,7 @@ export default function App() {
           {dices}
         </div>
         <button onClick={rollDice} className="roll-button">{tenzies ? 'Play again' : 'Roll'}</button>
+        {(bestRoll && bestTime) && <Records bestRoll={bestRoll} bestTime={bestTime}/> }
       </main>
   )
 }
